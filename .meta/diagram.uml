@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.gridnine.testing.controller.FlightController</OriginalElement>
+  <nodes>
+    <node x="1085.7056075205642" y="348.0">com.gridnine.testing.service.holder.FlightsHolder</node>
+    <node x="-213.43506462984737" y="-239.57814336075208">com.gridnine.testing.service.rule.stratagies.TotalRestTimeExceedsTwoHoursRule</node>
+    <node x="1030.7056075205642" y="-239.5781433607521">com.gridnine.testing.service.rule.stratagies.ArriveBeforeDepartSegmentsRule</node>
+    <node x="-184.43506462984737" y="385.0">com.gridnine.testing.service.rule.FlightFilterRuleService</node>
+    <node x="905.7334853113989" y="654.5904958871915">com.gridnine.testing.AppRunner</node>
+    <node x="441.89921034077577" y="-239.57814336075208">com.gridnine.testing.service.rule.stratagies.DepartureBeforePresentRule</node>
+    <node x="-161.93506462984737" y="978.7088695652175">com.gridnine.testing.service.io.InputService</node>
+    <node x="1007.2056075205642" y="924.1809917743831">com.gridnine.testing.service.factory.FlightFactory</node>
+    <node x="406.60670740305557" y="385.0">com.gridnine.testing.service.filter.FilteringService</node>
+    <node x="-243.93506462984737" y="646.7769776733255">com.gridnine.testing.controller.DefaultFlightController</node>
+    <node x="557.0041175088131" y="754.7769776733255">com.gridnine.testing.service.io.OutputService</node>
+    <node x="-184.43506462984737" y="9.48584723854276">com.gridnine.testing.service.rule.FlightFilterRuleServiceImpl</node>
+    <node x="599.5041175088131" y="999.7088695652175">com.gridnine.testing.service.io.IOService</node>
+    <node x="496.99176498237375" y="27.48584723854276">com.gridnine.testing.service.rule.stratagies.FlightFilterRule</node>
+    <node x="925.7056075205642" y="45.98584723854276">com.gridnine.testing.service.filter.DefaultFilteringService</node>
+    <node x="492.00411750881307" y="1095.9378989424201">com.gridnine.testing.service.io.IOServiceStreams</node>
+    <node x="507.1903407755584" y="569.8884888366628">com.gridnine.testing.controller.FlightController</node>
+    <node x="934.7056075205642" y="1131.9378989424201">com.gridnine.testing.service.factory.FlightFactoryImpl</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.gridnine.testing.controller.DefaultFlightController" target="com.gridnine.testing.service.io.IOService" relationship="TO_ONE">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.service.rule.stratagies.DepartureBeforePresentRule" target="com.gridnine.testing.service.rule.stratagies.FlightFilterRule" relationship="REALIZATION">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.service.rule.stratagies.ArriveBeforeDepartSegmentsRule" target="com.gridnine.testing.service.rule.stratagies.FlightFilterRule" relationship="REALIZATION">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.service.rule.stratagies.TotalRestTimeExceedsTwoHoursRule" target="com.gridnine.testing.service.rule.stratagies.FlightFilterRule" relationship="REALIZATION">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.service.io.IOService" target="com.gridnine.testing.service.io.OutputService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.service.io.IOServiceStreams" target="com.gridnine.testing.service.io.IOService" relationship="REALIZATION">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.service.rule.FlightFilterRuleService" target="com.gridnine.testing.service.rule.stratagies.FlightFilterRule" relationship="DEPENDENCY">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.service.filter.DefaultFilteringService" target="com.gridnine.testing.service.rule.stratagies.FlightFilterRule" relationship="DEPENDENCY">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.controller.DefaultFlightController" target="com.gridnine.testing.service.filter.FilteringService" relationship="TO_ONE">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.service.rule.FlightFilterRuleServiceImpl" target="com.gridnine.testing.service.rule.stratagies.FlightFilterRule" relationship="TO_MANY">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.AppRunner" target="com.gridnine.testing.service.factory.FlightFactory" relationship="DEPENDENCY">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.AppRunner" target="com.gridnine.testing.service.io.OutputService" relationship="DEPENDENCY">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.service.rule.FlightFilterRuleServiceImpl" target="com.gridnine.testing.service.rule.FlightFilterRuleService" relationship="REALIZATION">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.service.factory.FlightFactoryImpl" target="com.gridnine.testing.service.factory.FlightFactory" relationship="REALIZATION">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.service.filter.DefaultFilteringService" target="com.gridnine.testing.service.holder.FlightsHolder" relationship="DEPENDENCY">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.controller.DefaultFlightController" target="com.gridnine.testing.service.io.InputService" relationship="DEPENDENCY">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.controller.DefaultFlightController" target="com.gridnine.testing.controller.FlightController" relationship="REALIZATION">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.service.io.IOService" target="com.gridnine.testing.service.io.InputService" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.service.filter.FilteringService" target="com.gridnine.testing.service.rule.stratagies.FlightFilterRule" relationship="DEPENDENCY">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.service.filter.DefaultFilteringService" target="com.gridnine.testing.service.filter.FilteringService" relationship="REALIZATION">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.AppRunner" target="com.gridnine.testing.service.holder.FlightsHolder" relationship="DEPENDENCY">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.controller.DefaultFlightController" target="com.gridnine.testing.service.rule.FlightFilterRuleService" relationship="TO_ONE">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.controller.DefaultFlightController" target="com.gridnine.testing.service.io.OutputService" relationship="DEPENDENCY">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.AppRunner" target="com.gridnine.testing.controller.FlightController" relationship="DEPENDENCY">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.gridnine.testing.controller.DefaultFlightController" target="com.gridnine.testing.service.rule.stratagies.FlightFilterRule" relationship="DEPENDENCY">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.5666925929082849" showDependencies="true" x="848.5182834312577" y="460.6690669800237" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

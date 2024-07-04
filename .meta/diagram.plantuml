@@ -1,0 +1,102 @@
+@startuml
+
+!theme plain
+left to right direction
+skinparam linetype polyline
+
+class AppRunner {
+  + run(FlightFactory, FlightController, OutputService): void
+}
+class ArriveBeforeDepartSegmentsRule {
+  + test(Flight): boolean
+   name: String
+}
+class DefaultFilteringService {
+  + filterFights(Collection<FlightFilterRule>): List<Flight>
+}
+class DefaultFlightController {
+  - printFlightsForRules(Collection<FlightFilterRule>): void
+  + start(): void
+  - printUsage(): void
+  - processInput(String): void
+  - processFilterRules(String): void
+}
+class DepartureBeforePresentRule {
+  + test(Flight): boolean
+   name: String
+}
+interface FilteringService << interface >> {
+  + filterFights(Collection<FlightFilterRule>): List<Flight>
+}
+interface FlightController << interface >> {
+  + start(): void
+}
+interface FlightFactory << interface >> {
+  + createFlight(LocalDateTime[]): Flight
+}
+class FlightFactoryImpl {
+  - fillSegments(LocalDateTime[], List<Segment>): void
+  + createFlight(LocalDateTime[]): Flight
+}
+interface FlightFilterRule << interface >> {
+  + test(Flight): boolean
+   name: String
+}
+interface FlightFilterRuleService << interface >> {
+  + getByIndex(int): FlightFilterRule
+  + addAll(Collection<FlightFilterRule>): void
+   all: List<FlightFilterRule>
+}
+class FlightFilterRuleServiceImpl {
+  + getByIndex(int): FlightFilterRule
+  + addAll(Collection<FlightFilterRule>): void
+   all: List<FlightFilterRule>
+}
+class FlightsHolder {
+  + addFlights(Collection<Flight>): void
+   allFlights: List<Flight>
+}
+interface IOService << interface >>
+class IOServiceStreams {
+  + readStringWithPrompt(String): String
+  + outputStringLine(String): void
+  + outputString(String): void
+}
+interface InputService << interface >> {
+  + readStringWithPrompt(String): String
+}
+interface OutputService << interface >> {
+  + outputString(String): void
+  + outputStringLine(String): void
+}
+class TotalRestTimeExceedsTwoHoursRule {
+  + test(Flight): boolean
+   name: String
+}
+
+AppRunner                         -[#595959,dashed]->  FlightController                 
+AppRunner                         -[#595959,dashed]->  FlightFactory                    
+AppRunner                         -[#595959,dashed]->  FlightsHolder                    
+AppRunner                         -[#595959,dashed]->  OutputService                    
+ArriveBeforeDepartSegmentsRule    -[#008200,dashed]-^  FlightFilterRule                 
+DefaultFilteringService           -[#008200,dashed]-^  FilteringService                 
+DefaultFilteringService           -[#595959,dashed]->  FlightFilterRule                 
+DefaultFilteringService           -[#595959,dashed]->  FlightsHolder                    
+DefaultFlightController          "1" *-[#595959,plain]-> "filteringService\n1" FilteringService                 
+DefaultFlightController           -[#008200,dashed]-^  FlightController                 
+DefaultFlightController           -[#595959,dashed]->  FlightFilterRule                 
+DefaultFlightController          "1" *-[#595959,plain]-> "ruleService\n1" FlightFilterRuleService          
+DefaultFlightController          "1" *-[#595959,plain]-> "ioService\n1" IOService                        
+DefaultFlightController           -[#595959,dashed]->  InputService                     
+DefaultFlightController           -[#595959,dashed]->  OutputService                    
+DepartureBeforePresentRule        -[#008200,dashed]-^  FlightFilterRule                 
+FilteringService                  -[#595959,dashed]->  FlightFilterRule                 
+FlightFactoryImpl                 -[#008200,dashed]-^  FlightFactory                    
+FlightFilterRuleService           -[#595959,dashed]->  FlightFilterRule                 
+FlightFilterRuleServiceImpl      "1" *-[#595959,plain]-> "rules\n*" FlightFilterRule                 
+FlightFilterRuleServiceImpl       -[#008200,dashed]-^  FlightFilterRuleService          
+IOService                         -[#008200,plain]-^  InputService                     
+IOService                         -[#008200,plain]-^  OutputService                    
+IOServiceStreams                  -[#008200,dashed]-^  IOService                        
+TotalRestTimeExceedsTwoHoursRule  -[#008200,dashed]-^  FlightFilterRule                 
+@enduml
