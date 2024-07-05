@@ -9,6 +9,4 @@ public interface FlightFilterRuleService {
   void addAll(Collection<? extends FlightFilterRule> rule);
 
   List<FlightFilterRule> getAll();
-
-  FlightFilterRule getByIndex(int index);
 }

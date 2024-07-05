@@ -2,17 +2,17 @@ package com.gridnine.testing.controller;
 
 import static com.gridnine.testing.controller.MenuConstants.*;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import com.gridnine.testing.model.Flight;
 import com.gridnine.testing.service.filter.FilteringService;
 import com.gridnine.testing.service.io.IOService;
 import com.gridnine.testing.service.rule.FlightFilterRuleService;
 import com.gridnine.testing.service.rule.stratagies.FlightFilterRule;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public final class DefaultFlightController implements FlightController {
 
@@ -55,29 +55,31 @@ public final class DefaultFlightController implements FlightController {
   }
 
   private void processFilterRules(String input) {
+    var allRules = ruleService.getAll();
     Set<FlightFilterRule> activeRules = new HashSet<>();
     String[] numbersSeparated = input.split(" ");
     for (var numberString : numbersSeparated) {
       int index = Integer.parseInt(numberString) - 1;
-      if (index < 0 || index >= ruleService.getAll().size()) {
+      if (index < 0 || index >= allRules.size()) {
         ioService.outputStringLine(OUT_OF_RANGE_ERROR_MSG + (index + 1));
         return;
       }
-      activeRules.add(ruleService.getByIndex(index));
+      activeRules.add(allRules.get(index));
     }
     printFlightsForRules(activeRules);
   }
 
   private void printUsage() {
+    var rules = ruleService.getAll();
     ioService.outputStringLine(USAGE);
-    for (int i = 0; i < ruleService.getAll().size(); i++) {
+    for (int i = 0; i < rules.size(); i++) {
       ioService.outputStringLine(
-          RULE_PRINT_FORMAT.formatted(i + 1, ruleService.getByIndex(i).getName()));
+          RULE_PRINT_FORMAT.formatted(i + 1, rules.get(i).getName()));
     }
   }
 
   private void printFlightsForRules(Collection<FlightFilterRule> activeRules) {
-    List<Flight> flights = filteringService.filterFights(activeRules);
+    var flights = filteringService.filterFights(activeRules);
     if (flights.isEmpty()) {
       ioService.outputStringLine(EMPTY_FLIGHTS_MSG);
     } else {

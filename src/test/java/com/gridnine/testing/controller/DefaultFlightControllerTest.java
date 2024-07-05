@@ -14,11 +14,19 @@ import static java.time.LocalDateTime.now;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.List;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.gridnine.testing.model.Flight;
 import com.gridnine.testing.model.Segment;
@@ -26,13 +34,6 @@ import com.gridnine.testing.service.filter.FilteringService;
 import com.gridnine.testing.service.io.IOService;
 import com.gridnine.testing.service.rule.FlightFilterRuleService;
 import com.gridnine.testing.service.rule.stratagies.FlightFilterRule;
-import java.util.List;
-import java.util.Set;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class DefaultFlightControllerTest {
@@ -90,7 +91,6 @@ class DefaultFlightControllerTest {
   void shouldPrintUsageWhenHelpFlagIsEntered() {
     when(ioService.readStringWithPrompt(anyString())).thenReturn(HELP, EXIT);
     when(ruleService.getAll()).thenReturn(singletonList(RULE));
-    when(ruleService.getByIndex(anyInt())).thenReturn(RULE);
 
     assertDoesNotThrow(controller::start);
 
@@ -135,7 +135,6 @@ class DefaultFlightControllerTest {
   void shouldPrintMessageOnNumberOutOfRulesListRange() {
     when(ioService.readStringWithPrompt(anyString())).thenReturn("2", EXIT);
     when(ruleService.getAll()).thenReturn(singletonList(RULE));
-    when(ruleService.getByIndex(anyInt())).thenReturn(RULE);
 
     assertDoesNotThrow(controller::start);
 
@@ -146,7 +145,6 @@ class DefaultFlightControllerTest {
   void shouldPrintMessageOnNegativeRuleIndex() {
     when(ioService.readStringWithPrompt(anyString())).thenReturn("-1", EXIT);
     when(ruleService.getAll()).thenReturn(singletonList(RULE));
-    when(ruleService.getByIndex(anyInt())).thenReturn(RULE);
 
     assertDoesNotThrow(controller::start);
 
@@ -157,7 +155,6 @@ class DefaultFlightControllerTest {
   void shouldPrintMultipleFlightsOnCorrectInput() {
     when(ioService.readStringWithPrompt(anyString())).thenReturn("1", EXIT);
     when(ruleService.getAll()).thenReturn(singletonList(RULE));
-    when(ruleService.getByIndex(anyInt())).thenReturn(RULE);
     when(filteringService.filterFights(Set.of(RULE))).thenReturn(List.of(FLIGHT, FLIGHT));
 
     assertDoesNotThrow(controller::start);

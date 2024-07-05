@@ -21,7 +21,7 @@ class TotalRestTimeExceedsTwoHoursRuleTest {
       new Segment(now().plusHours(6), now().plusHours(7)))
   );
 
-  FlightFilterRule rule = new TotalRestTimeExceedsTwoHoursRule();
+  final FlightFilterRule rule = new TotalRestTimeExceedsTwoHoursRule();
 
   @Test
   void shouldReturnTrueOnMatchingFlight() {
